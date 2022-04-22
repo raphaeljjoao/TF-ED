@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1650584771 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\main.c
+	<stdio.h>
+	"src/arvores/ABP.h"
+	"src/arvores/AVL.h"
+
+1650424987 c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\arvores\abp.h
+
+1650585115 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\arvores\avl.c
+	<stdio.h>
+	<stdlib.h>
+	"AVL.h"
+
+1650425162 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\arvores\abp.c
+	<stdio.h>
+	<stdlib.h>
+	"ABP.h"
+
+1650584842 c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\arvores\avl.h
+
+1649945013 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\utils.c
+	<stdio.h>
+	<stdlib.h>
+	"Utils.h"
+
+1649944135 c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\utils.h
+	"arvores/ABP.h"
+	"arvores/AVL.h"
+
+1649911572 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\test\test_abp.c
+	<stdio.h>
+	"test_abp.h"
+	"../src/arvores/ABP.h"
+
+1649910952 c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\test\test_abp.h
+
+1649911341 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\test\tests.c
+	<stdio.h>
+	"tests.h"
+
+1649910929 c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\test\tests.h
+
