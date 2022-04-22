@@ -1,0 +1,1 @@
+char* tempoEscrito(int seg);
