@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Utils.h"
+#include "utils.h"
 
 int iguaisABP(ABP *arv1, ABP *arv2) {
     if (arv1 == NULL && arv2 == NULL) return 1;
