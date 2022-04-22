@@ -7,7 +7,7 @@ int main(){
 
     AVL *arv = NULL;
     int ok;
-
+    //aloalo
     arv = insereAVL(arv, 1,&ok);
     arv = insereAVL(arv, 2,&ok);
     arv = insereAVL(arv, 3,&ok);
