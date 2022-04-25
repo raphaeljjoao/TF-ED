@@ -1,3 +1,6 @@
+#ifndef ABP_H_
+#define ABP_H_
+
 typedef struct NodoABP ABP;
 
 struct NodoABP {
@@ -19,7 +22,4 @@ void posFixadoDABP(ABP *arv);
 void centralEABP(ABP *arv);
 void centralDABP(ABP *arv);
 
-
-
-
-
+#endif // ABP_H_
