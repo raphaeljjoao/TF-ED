@@ -198,6 +198,17 @@ AVL* insereAVL(AVL *a, int x, int *ok) {
     return a;
 }
 
+AVL* destroiAVL(AVL *arv) {
+    if (arv == NULL) return;
+
+    destroiAVL(arv->esq);
+    destroiAVL(arv->dir);
+    free(arv);
+    arv = NULL;
+
+    return arv;
+}
+
 void preFixadoEAVL(AVL *arv) {
     if (arv != NULL) {
         printf("%d - ", arv->info);
