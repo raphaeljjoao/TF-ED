@@ -34,10 +34,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/Utils.c">
+		<Unit filename="src/analises/ordenada_ABP.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/Utils.h" />
+		<Unit filename="src/analises/ordenada_ABP.h" />
 		<Unit filename="src/arvores/ABP.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -46,6 +46,15 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/arvores/AVL.h" />
+		<Unit filename="src/options.h" />
+		<Unit filename="src/stats.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/stats.h" />
+		<Unit filename="src/utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/utils.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
