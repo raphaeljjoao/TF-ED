@@ -2,17 +2,22 @@
 #include <stdlib.h>
 #include "ABP.h"
 
-ABP* insereABP(ABP *arv, int num) {
-    if (arv == NULL) {
-        arv =  (ABP*) malloc(sizeof(ABP));
-        arv->info = num;
-        arv->esq = NULL;
-        arv->dir = NULL;
-        return arv;
-    } else if (num < arv->info) arv->esq = insereABP(arv->esq, num);
-    else if (num > arv->info) arv->dir = insereABP(arv->dir, num);
+void insereABP(ABP **arv, int num) {
+    ABP *aux = *arv;
+    while (aux) {
+        if (num < aux->info)
+            arv = &aux->esq;
+        else
+            arv = &aux->dir;
 
-    return arv;
+        aux = *arv;
+    }
+
+    aux = (ABP*) malloc(sizeof(ABP));
+    aux->info = num;
+    aux->esq = NULL;
+    aux->dir = NULL;
+    *arv = aux;
 }
 
 void preFixadoEABP(ABP *arv) {
