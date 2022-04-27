@@ -11,10 +11,20 @@ ABP* insereOrdenadoABP(int quantidade) {
     ABP *arv = (ABP*) malloc(sizeof(ABP));
     arv = NULL;
 
+    int aviso = quantidade / 100;
+
+    int deltaTempo = 0;
+    int diferenca = 0;
+    int tempoInicio = time(NULL);
+
     for (int i = 1; i <= quantidade; i++) {
-        arv = insereABP(arv, i);
-        if (i % (quantidade / 15) == 0 && !SILENT)
-            printf("(ABP) %d/%d dados inseridos.\n", i, quantidade);
+        insereABP(&arv, i);
+        if (i % aviso == 0 && !SILENT) {
+            diferenca = deltaTempo;
+            deltaTempo = time(NULL) - tempoInicio;
+            diferenca = deltaTempo - diferenca;
+            printf("ABP: %d/%d dados inseridos em %d segundos. (%ds de diferença)\n", i, quantidade, deltaTempo, diferenca);
+        }
     }
 
     return arv;
