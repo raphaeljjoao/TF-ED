@@ -1,19 +1,17 @@
 # depslib dependency file v1.0
-1650609188 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\main.c
+1650890487 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\main.c
 	<stdio.h>
-	"src/arvores/ABP.h"
-	"src/arvores/AVL.h"
 	"src/options.h"
 	"src/analises/ordenada_ABP.h"
 
-1650604334 c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\arvores\abp.h
+1651093030 c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\arvores\abp.h
 
 1650595310 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\arvores\avl.c
 	<stdio.h>
 	<stdlib.h>
 	"AVL.h"
 
-1650607563 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\arvores\abp.c
+1651093428 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\arvores\abp.c
 	<stdio.h>
 	<stdlib.h>
 	"ABP.h"
@@ -54,7 +52,7 @@
 
 1650592412 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\aleatorio\a_avl.c
 
-1650609184 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\analises\ordenada_abp.c
+1651093386 source:c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\analises\ordenada_abp.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -64,5 +62,6 @@
 	"../options.h"
 	"ordenada_ABP.h"
 
-1650605044 c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\analises\ordenada_abp.h
+1650890096 c:\users\joaor\documents\ufrgs\estruturas de dados\trabalho final\src\analises\ordenada_abp.h
+	"../arvores/ABP.h"
 
