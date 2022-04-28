@@ -90,7 +90,7 @@ ABP* consultaABP2(ABP *arv, int chave) {
 
 // Código: https://www.ic.unicamp.br/~rocha/teaching/2016s1/mc202/aulas/arvore-binaria-busca-01.pdf
 ABP* destroiABP(ABP *arv) {
-    if (arv == NULL) return;
+    if (arv == NULL) return NULL;
 
     destroiABP(arv->esq);
     destroiABP(arv->dir);

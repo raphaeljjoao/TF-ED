@@ -199,7 +199,7 @@ AVL* insereAVL(AVL *a, int x, int *ok) {
 }
 
 AVL* destroiAVL(AVL *arv) {
-    if (arv == NULL) return;
+    if (arv == NULL) return NULL;
 
     destroiAVL(arv->esq);
     destroiAVL(arv->dir);
