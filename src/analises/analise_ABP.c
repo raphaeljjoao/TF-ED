@@ -13,6 +13,5 @@ int consultaValorABP(ABP *arv, int valor, int *tempo, int *comparacoes) {
     else *tempo = -1;
 
     *comparacoes = comps;
-    printf("!!! // Encontrei o valor %d com %d comps\n\n", consulta->info, *comparacoes);
     return consulta != NULL;
 }
