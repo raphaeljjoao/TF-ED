@@ -4,8 +4,7 @@
 #include "../arvores/ABP.h"
 
 void analiseOrdenadaABP(int quantidade);
-ABP* insereOrdenadoABP(int quantidade);
-int consultaValor(ABP *arv, int valor, int *tempo); // Retorna se encontrou ou não o valor
+ABP* insereOrdenadoABP(int quantidade, int *comparacoes);
 void consultaOrdenadaABP(ABP *arv, int quantidade);
 
 #endif // ORDENADA_ABP_H_

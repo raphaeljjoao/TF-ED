@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include "ABP.h"
 
-void insereABP(ABP **arv, int num) {
+void insereABP(ABP **arv, int num, int *comparacoes) {
     ABP *aux = *arv;
+    int comps = 0;
     while (aux) {
+        comps++;
         if (num < aux->info)
             arv = &aux->esq;
         else
@@ -17,6 +19,8 @@ void insereABP(ABP **arv, int num) {
     aux->info = num;
     aux->esq = NULL;
     aux->dir = NULL;
+
+    *comparacoes = comps;
     *arv = aux;
 }
 
@@ -68,9 +72,12 @@ void centralDABP(ABP *arv) {
     }
 }
 
-ABP* consultaABP(ABP *arv, int chave) {
+ABP* consultaABP(ABP *arv, int chave, int *comparacoes) {
+
+    *comparacoes = 0;
 
     while (arv != NULL) {
+        (*comparacoes)++;
         if (arv->info == chave) return arv; //achou entao retorna o ponteiro para o nodo
         else if (arv->info > chave) arv = arv->esq;
         else arv = arv->dir;

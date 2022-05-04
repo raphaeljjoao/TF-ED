@@ -6,8 +6,9 @@
 #include "../stats.h"
 #include "../options.h"
 #include "ordenada_ABP.h"
+#include "analise_ABP.h"
 
-ABP* insereOrdenadoABP(int quantidade) {
+ABP* insereOrdenadoABP(int quantidade, int *comparacoes) {
     ABP *arv = (ABP*) malloc(sizeof(ABP));
     arv = NULL;
 
@@ -15,26 +16,33 @@ ABP* insereOrdenadoABP(int quantidade) {
 
     int tempoInicio = time(NULL);
 
+    int comparacoesTotal = 0;
+
     for (int i = 1; i <= quantidade; i++) {
-        insereABP(&arv, i);
+        int compTemp;
+        insereABP(&arv, i, &compTemp);
+        comparacoesTotal += compTemp;
         if (i % aviso == 0 && !SILENT) {
             int deltaTempo = time(NULL) - tempoInicio;
             printf("ABP: %d/%d dados inseridos em %d segundos.\n", i, quantidade, deltaTempo);
         }
     }
 
+    *comparacoes = comparacoesTotal;
     return arv;
 }
 
 void analiseOrdenadaABP(int quantidade) {
     ABP *arv;
+    int comparacoes;
     int ini = time(NULL);
-    arv = insereOrdenadoABP(quantidade);
+    arv = insereOrdenadoABP(quantidade, &comparacoes);
     int decorridoInsere = time(NULL) - ini;
 
     consultaOrdenadaABP(arv, quantidade);
 
     printf("%d dados foram inseridos em %s\n", quantidade, tempoEscrito(decorridoInsere));
+    printf("Comparacoes realizadas: %d\n", comparacoes);
     printf("Altura da arvore: %d\n", alturaABP(arv));
 
     arv = destroiABP(arv);
@@ -42,36 +50,27 @@ void analiseOrdenadaABP(int quantidade) {
 
 void consultaOrdenadaABP(ABP *arv, int quantidade) {
     int temposConsulta[3];
+    int comparacoes[3];
     int consultaInicio = 1;
     int consultaMeio = quantidade /2;
     int consultaFim = quantidade;
 
     int sucessoConsulta;
     // Consulta no início
-    sucessoConsulta = consultaValor(arv, consultaInicio, &temposConsulta[0]);
+    sucessoConsulta = consultaValorABP(arv, consultaInicio, &temposConsulta[0], &comparacoes[0]);
     if (sucessoConsulta) printf("Valor %d encontrado na arvore.\n", consultaInicio);
     else printf("Valor %d nao encontrado na arvore.\n", consultaInicio);
 
     // Consulta no meio
-    sucessoConsulta = consultaValor(arv, consultaMeio, &temposConsulta[1]);
+    sucessoConsulta = consultaValorABP(arv, consultaMeio, &temposConsulta[1], &comparacoes[1]);
     if (sucessoConsulta) printf("Valor %d encontrado na arvore.\n", consultaMeio);
     else printf("Valor %d nao encontrado na arvore.\n", consultaMeio);
 
     // Consulta no fim
-    sucessoConsulta = consultaValor(arv, consultaFim, &temposConsulta[2]);
+    sucessoConsulta = consultaValorABP(arv, consultaFim, &temposConsulta[2], &comparacoes[2]);
     if (sucessoConsulta) printf("Valor %d encontrado na arvore.\n", consultaFim);
     else printf("Valor %d nao encontrado na arvore.\n", consultaFim);
 
+    printf("Comparações: %d, %d, %d\n", comparacoes[0], comparacoes[1], comparacoes[2]);
     printf("Tempos de consulta: %d, %d e %d\n", temposConsulta[0], temposConsulta[1], temposConsulta[2]);
-}
-
-int consultaValor(ABP *arv, int valor, int *tempo) {
-    int inicio = time(NULL);
-    ABP *consulta = consultaABP(arv, valor);
-    int fim = time(NULL);
-
-    if (consulta != NULL) *tempo = fim - inicio;
-    else *tempo = -1;
-
-    return consulta != NULL;
 }

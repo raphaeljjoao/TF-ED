@@ -9,8 +9,8 @@ struct NodoABP {
     ABP *dir;
 };
 
-void insereABP(ABP **arv, int num);
-ABP* consultaABP(ABP *arv, int chave);
+void insereABP(ABP **arv, int num, int *comparacoes);
+ABP* consultaABP(ABP *arv, int chave, int *comparacoes);
 ABP* consultaABP2(ABP *arv, int chave);
 ABP* destroiABP(ABP *arv);
 
