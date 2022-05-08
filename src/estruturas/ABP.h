@@ -22,4 +22,8 @@ void posFixadoDABP(ABP *arv);
 void centralEABP(ABP *arv);
 void centralDABP(ABP *arv);
 
+int alturaABP(ABP *arv);
+int calculaFBABP(ABP *arv);
+int fatorABP(ABP *arv);
+
 #endif // ABP_H_

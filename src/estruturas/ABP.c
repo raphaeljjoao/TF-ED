@@ -106,3 +106,30 @@ ABP* destroiABP(ABP *arv) {
 
     return arv;
 }
+
+int alturaABP(ABP *arv) {
+    int altEsq, altDir;
+    if (arv == NULL) return 0;
+    else {
+        altEsq = alturaABP(arv->esq);
+        altDir = alturaABP(arv->dir);
+        if (altEsq > altDir) return (1 + altEsq);
+        else return (1 + altDir);
+    }
+}
+
+int calculaFBABP(ABP *arv) {
+    return (alturaABP(arv->esq) - alturaABP(arv->dir));
+}
+
+int fatorABP(ABP *arv) {
+    int fator = abs(calculaFBABP(arv));
+    int fatorEsq = abs(calculaFBABP(arv->esq));
+    int fatorDir = abs(calculaFBABP(arv->dir));
+
+    if (fator > fatorEsq && fator > fatorDir) return fator;
+    else if (fatorEsq > fator && fatorEsq > fatorDir) return fatorEsq;
+    else if (fatorDir > fator && fatorDir > fatorEsq) return fatorDir;
+
+    return -1; // Erro
+}

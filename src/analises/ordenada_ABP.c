@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../arvores/ABP.h"
-#include "../utils.h"
+#include "../estruturas/ABP.h"
 #include "../stats.h"
 #include "../options.h"
 #include "ordenada_ABP.h"
-#include "analise_ABP.h"
 
 ABP* insereOrdenadoABP(int quantidade, int *comparacoes) {
     ABP *arv = (ABP*) malloc(sizeof(ABP));
@@ -22,9 +20,11 @@ ABP* insereOrdenadoABP(int quantidade, int *comparacoes) {
         int compTemp;
         insereABP(&arv, i, &compTemp);
         comparacoesTotal += compTemp;
+        if (CSVMODE) printf("inseridos,tempo");
         if (i % aviso == 0 && !SILENT) {
             int deltaTempo = time(NULL) - tempoInicio;
-            printf("ABP: %d/%d dados inseridos em %d segundos.\n", i, quantidade, deltaTempo);
+            if (CSVMODE) printf("%d,%d\n", i, deltaTempo);
+            else printf("ABP: %d/%d dados inseridos em %d segundos.\n", i, quantidade, deltaTempo);
         }
     }
 
@@ -46,6 +46,19 @@ void analiseOrdenadaABP(int quantidade) {
     printf("Altura da arvore: %d\n", alturaABP(arv));
 
     arv = destroiABP(arv);
+}
+
+int consultaValorABP(ABP *arv, int valor, int *tempo, int *comparacoes) {
+    int comps;
+    int inicio = time(NULL);
+    ABP *consulta = consultaABP(arv, valor, &comps);
+    int fim = time(NULL);
+
+    if (consulta != NULL) *tempo = fim - inicio;
+    else *tempo = -1;
+
+    *comparacoes = comps;
+    return consulta != NULL;
 }
 
 void consultaOrdenadaABP(ABP *arv, int quantidade) {
