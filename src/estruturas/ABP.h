@@ -14,6 +14,9 @@ ABP* consultaABP(ABP *arv, int chave, long int *comparacoes);
 ABP* consultaABP2(ABP *arv, int chave);
 ABP* destroiABP(ABP *arv);
 
+// Retorna se encontrou ou não o valor
+int consultaValorABP(ABP *arv, int valor, int *tempo, long int *comps); 
+
 // Caminhamentos
 void preFixadoEABP(ABP *arv);
 void preFixadoDABP(ABP *arv);

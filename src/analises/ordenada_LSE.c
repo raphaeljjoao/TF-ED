@@ -3,7 +3,7 @@
 #include "../estruturas/LSE.h"
 #include "ordenada_LSE.h"
 #include "../options.h"
-#include "../stats.h"
+#include "../utils.h"
 
 LSE* insereOrdenadoLSE(int quantidade, long int *comparacoes) {
     LSE *ptLista;
@@ -14,12 +14,12 @@ LSE* insereOrdenadoLSE(int quantidade, long int *comparacoes) {
     int tempoInicio = time(NULL);
     long int comparacoesTotal = 0;
 
+    if (CSVMODE && !SILENT) printf("inseridos,tempo\n");
     for (int i = 1; i <= quantidade; i++) {
         long int compTemp; // Comparações temporárias
         ptLista = insereFim(ptLista, i, &compTemp);
         comparacoesTotal += compTemp;
         if (i % aviso == 0 && !SILENT) {
-            if (CSVMODE) printf("inseridos,tempo");
             int deltaTempo = time(NULL) - tempoInicio;
             if (CSVMODE) printf("%d,%d\n", i, deltaTempo);
             else printf("LSE: %d/%d dados inseridos em %d segundos.\n", i, quantidade, deltaTempo);

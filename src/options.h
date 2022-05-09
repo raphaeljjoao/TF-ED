@@ -8,7 +8,7 @@
 #define CSVMODE FALSE
 #define SILENT FALSE
 
-#define NUM_AVISOS 25
+#define NUM_AVISOS 50
 
 #define NUM_CONSULTAS_ORD 3
 #define NUM_CONSULTAS_ALEAT 10

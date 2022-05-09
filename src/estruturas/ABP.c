@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "ABP.h"
 
 void insereABP(ABP **arv, int num, long int *comparacoes) {
@@ -22,6 +23,18 @@ void insereABP(ABP **arv, int num, long int *comparacoes) {
 
     *comparacoes = comps;
     *arv = aux;
+}
+
+int consultaValorABP(ABP *arv, int valor, int *tempo, long int *comps) {
+    long int comparacoes;
+    int inicio = time(NULL);
+    ABP *consulta = consultaABP(arv, valor, &comparacoes);
+    int fim = time(NULL);
+
+    *tempo = time(NULL) - inicio;
+
+    *comps = comparacoes;
+    return consulta != NULL;
 }
 
 void preFixadoEABP(ABP *arv) {
