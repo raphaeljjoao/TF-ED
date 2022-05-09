@@ -6,66 +6,64 @@
 #include "../options.h"
 #include "ordenada_ABP.h"
 
-ABP* insereOrdenadoABP(int quantidade, int *comparacoes) {
+ABP* insereOrdenadoABP(int quantidade, long int *comps) {
     ABP *arv = (ABP*) malloc(sizeof(ABP));
     arv = NULL;
 
-    int aviso = quantidade / 25;
+    int aviso = quantidade / NUM_AVISOS;
 
     int tempoInicio = time(NULL);
-
-    int comparacoesTotal = 0;
+    long int comparacoesTotal = 0;
 
     for (int i = 1; i <= quantidade; i++) {
-        int compTemp;
+        long int compTemp;
         insereABP(&arv, i, &compTemp);
         comparacoesTotal += compTemp;
-        if (CSVMODE) printf("inseridos,tempo");
         if (i % aviso == 0 && !SILENT) {
+            if (CSVMODE) printf("inseridos,tempo");
             int deltaTempo = time(NULL) - tempoInicio;
             if (CSVMODE) printf("%d,%d\n", i, deltaTempo);
             else printf("ABP: %d/%d dados inseridos em %d segundos.\n", i, quantidade, deltaTempo);
         }
     }
 
-    *comparacoes = comparacoesTotal;
+    *comps = comparacoesTotal;
     return arv;
 }
 
 void analiseOrdenadaABP(int quantidade) {
     ABP *arv;
-    int comparacoes;
-    int ini = time(NULL);
+    long int comparacoes;
+    int tempoInicio = time(NULL);
     arv = insereOrdenadoABP(quantidade, &comparacoes);
-    int decorridoInsere = time(NULL) - ini;
+    int deltaTempo = time(NULL) - tempoInicio;
 
     consultaOrdenadaABP(arv, quantidade);
 
-    printf("%d dados foram inseridos em %s\n", quantidade, tempoEscrito(decorridoInsere));
+    printf("%d dados foram inseridos em %s\n", quantidade, tempoEscrito(deltaTempo));
     printf("Comparacoes realizadas: %d\n", comparacoes);
     printf("Altura da arvore: %d\n", alturaABP(arv));
 
     arv = destroiABP(arv);
 }
 
-int consultaValorABP(ABP *arv, int valor, int *tempo, int *comparacoes) {
-    int comps;
+int consultaValorABP(ABP *arv, int valor, int *tempo, long int *comps) {
+    long int comparacoes;
     int inicio = time(NULL);
-    ABP *consulta = consultaABP(arv, valor, &comps);
+    ABP *consulta = consultaABP(arv, valor, &comparacoes);
     int fim = time(NULL);
 
-    if (consulta != NULL) *tempo = fim - inicio;
-    else *tempo = -1;
+    *tempo = time(NULL) - inicio;
 
-    *comparacoes = comps;
+    *comps = comparacoes;
     return consulta != NULL;
 }
 
 void consultaOrdenadaABP(ABP *arv, int quantidade) {
     int temposConsulta[3];
-    int comparacoes[3];
+    long int comparacoes[3];
     int consultaInicio = 1;
-    int consultaMeio = quantidade /2;
+    int consultaMeio = quantidade / 2;
     int consultaFim = quantidade;
 
     int sucessoConsulta;

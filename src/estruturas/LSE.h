@@ -1,26 +1,29 @@
-typedef struct tipoNo ptLSE;
+#ifndef LSE_H_
+
+#define LSE_H_
+
+typedef struct tipoNo LSE;
 struct tipoNo{
     int numero;
-    ptLSE *proximo;
+    LSE *proximo;
 };
 
 // Cria uma lista vazia
-ptLSE* criaLista();
+LSE* criaLista();
 
 // Calcula a quantidade de elementos de uma lista
-int tamanho(ptLSE *ptLista);
-
-// Insere no início da lista
-ptLSE* insereInicio(ptLSE *ptLista, int num);
-
-// Insere no meio da lista
-ptLSE* insereMeio(ptLSE *ptLista, int num);
+int tamanho(LSE *ptLista);
 
 // Insere no final da lista
-ptLSE* insereFim(ptLSE *ptLista, int num);
+LSE* insereFim(LSE *ptLista, int num, long int *comps);
+
+// Consulta um nó da lista e retorna ele (retorna NULL se não encontrar)
+LSE* consultaLSE(LSE *ptLista, int num, long int *comps);
 
 // Imprime todos os itens da lista de forma sequencial
-void imprime(ptLSE *ptLista);
+void imprime(LSE *ptLista);
 
 // Destrói uma lista
-ptLSE* destroi(ptLSE *ptLista);
+LSE* destroiLista(LSE *ptLista);
+
+#endif // LSE_H_

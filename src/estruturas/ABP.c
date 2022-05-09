@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include "ABP.h"
 
-void insereABP(ABP **arv, int num, int *comparacoes) {
+void insereABP(ABP **arv, int num, long int *comparacoes) {
     ABP *aux = *arv;
-    int comps = 0;
+    long int comps = 0;
     while (aux) {
         comps++;
         if (num < aux->info)
@@ -72,7 +72,7 @@ void centralDABP(ABP *arv) {
     }
 }
 
-ABP* consultaABP(ABP *arv, int chave, int *comparacoes) {
+ABP* consultaABP(ABP *arv, int chave, long int *comparacoes) {
 
     *comparacoes = 0;
 
