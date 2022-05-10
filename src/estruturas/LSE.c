@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "LSE.h"
 
 LSE* criaLista(){
@@ -52,6 +53,17 @@ LSE *consultaLSE(LSE *ptLista, int num, long int *comps) {
     }
 
     return NULL;
+}
+
+int consultaValorLSE(LSE *ptLista, int valor, int *tempo, long int *comparacoes) {
+    long int comps;
+    int inicio = time(NULL);
+    LSE *consulta = consultaLSE(ptLista, valor, &comps);
+
+    *tempo = time(NULL) - inicio;
+
+    *comparacoes = comps;
+    return consulta != NULL;
 }
 
 void imprime(LSE *ptLista){

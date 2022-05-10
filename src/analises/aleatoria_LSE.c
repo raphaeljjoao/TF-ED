@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../estruturas/ABP.h"
+#include "../estruturas/LSE.h"
 #include "../utils.h"
 #include "../options.h"
-#include "aleatoria_ABP.h"
+#include "aleatoria_LSE.h"
 
-ABP* insereAleatorioABP(int quantidade, long int *comps) {
-    ABP *arv = (ABP*) malloc(sizeof(ABP));
-    arv = NULL;
+LSE* insereAleatorioLSE(int quantidade, long int *comps) {
+    LSE *ptLista = (LSE*) malloc(sizeof(LSE));
+    ptLista = NULL;
 
     int aviso = quantidade / NUM_AVISOS;
 
@@ -20,47 +20,46 @@ ABP* insereAleatorioABP(int quantidade, long int *comps) {
         long int compTemp;
 
         int nAleat = aleatorio(quantidade);
-        insereABP(&arv, nAleat, &compTemp);
+        ptLista = insereFim(ptLista, nAleat, &compTemp);
 
         comparacoesTotal += compTemp;
         if (i % aviso == 0 && !SILENT) {
             int deltaTempo = time(NULL) - tempoInicio;
             if (CSVMODE) printf("%d,%d\n", i, deltaTempo);
-            else printf("ABP: %d/%d dados inseridos em %d segundos.\n", i, quantidade, deltaTempo);
+            else printf("LSE: %d/%d dados inseridos em %d segundos.", i, quantidade, deltaTempo);
         }
     }
 
     *comps = comparacoesTotal;
-    return arv;
+    return ptLista;
 }
 
-void analiseAleatoriaABP(int quantidade) {
-    ABP *arv;
+void analiseAleatoriaLSE(int quantidade) {
+    LSE *ptLista;
     long int comparacoes;
 
     int tempoInicio = time(NULL);
-    arv = insereAleatorioABP(quantidade, &comparacoes);
+    ptLista = insereAleatorioLSE(quantidade, &comparacoes);
     int deltaTempo = time(NULL) - tempoInicio;
 
     printf("\n%d dados foram inseridos em %s\n", quantidade, tempoEscrito(deltaTempo));
     printf("Comparacoes realizadas: %d\n", comparacoes);
-    printf("Altura da arvore: %d\n", alturaABP(arv));
 
     printf("\nConsultas\n");
-    consultaAleatoriaABP(arv, quantidade);
+    consultaAleatoriaLSE(ptLista, quantidade);
     
-    arv = destroiABP(arv);
+    ptLista = destroiLista(ptLista);
 }
 
-void consultaAleatoriaABP(ABP *arv, int quantidade) {
+void consultaAleatoriaLSE(LSE *ptLista, int quantidade) {
     int temposConsulta[NUM_CONSULTAS_ALEAT];
     long int comparacoes[NUM_CONSULTAS_ALEAT];
 
     for (int i = 0; i < NUM_CONSULTAS_ALEAT; i++) {
         int nAleat = aleatorio(quantidade);
-        int sucessoConsulta = consultaValorABP(arv, nAleat, &temposConsulta[i], &comparacoes[i]);
-        if (sucessoConsulta) printf("Valor %d encontrado na arvore.\n", nAleat);
-        else printf("Valor %d nao encontrado na arvore.\n", nAleat);
+        int sucessoConsulta = consultaValorLSE(ptLista, nAleat, &temposConsulta[i], &comparacoes[i]);
+        if (sucessoConsulta) printf("Valor %d encontrado na lista.\n", nAleat);
+        else printf("Valor %d nao encontrado na lista.\n", nAleat);
     }
 
     long int mediaComparacoes = 0;

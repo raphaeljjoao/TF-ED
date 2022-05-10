@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include "../estruturas/LSE.h"
 #include "ordenada_LSE.h"
@@ -6,8 +7,8 @@
 #include "../utils.h"
 
 LSE* insereOrdenadoLSE(int quantidade, long int *comparacoes) {
-    LSE *ptLista;
-    ptLista = criaLista();
+    LSE *ptLista = (LSE*) malloc(sizeof(LSE));
+    ptLista = NULL;
 
     int aviso = quantidade / NUM_AVISOS;
 
@@ -37,24 +38,13 @@ void analiseOrdenadaLSE(int quantidade) {
     ptLista = insereOrdenadoLSE(quantidade, &comparacoes);
     int deltaTempo = time(NULL) - tempoInicio;
 
-    consultaOrdenadaLSE(ptLista, quantidade);
-
-    printf("%d dados foram inseridos em %s\n", quantidade, tempoEscrito(deltaTempo));
+    printf("\n%d dados foram inseridos em %s\n", quantidade, tempoEscrito(deltaTempo));
     printf("Comparacoes realizadas: %d\n", comparacoes);
 
+    printf("\nConsultas\n");
+    consultaOrdenadaLSE(ptLista, quantidade);
+
     ptLista = destroiLista(ptLista);
-}
-
-
-int consultaValorLSE(LSE *ptLista, int valor, int *tempo, long int *comparacoes) {
-    long int comps;
-    int inicio = time(NULL);
-    LSE *consulta = consultaLSE(ptLista, valor, &comps);
-
-    *tempo = time(NULL) - inicio;
-
-    *comparacoes = comps;
-    return consulta != NULL;
 }
 
 void consultaOrdenadaLSE(LSE *ptLista, int quantidade) {
@@ -80,6 +70,9 @@ void consultaOrdenadaLSE(LSE *ptLista, int quantidade) {
     if (sucessoConsulta) printf("Valor %d encontrado na lista.\n", consultaFim);
     else printf("Valor %d nao encontrado na lista.\n", consultaFim);
 
-    printf("Comparações: %d, %d, %d\n", comparacoes[0], comparacoes[1], comparacoes[2]);
-    printf("Tempos de consulta: %d, %d e %d\n", temposConsulta[0], temposConsulta[1], temposConsulta[2]);
+    long int mediaComparacoes = (comparacoes[0] + comparacoes[1] + comparacoes[2]) / NUM_CONSULTAS_ORD;
+    printf("Comparações: %d, %d, %d (media %d)\n", comparacoes[0], comparacoes[1], comparacoes[2], mediaComparacoes);
+
+    int mediaTempo = (temposConsulta[0] + temposConsulta[1] + temposConsulta[2]) / NUM_CONSULTAS_ORD;
+    printf("Tempos de consulta: %d, %d e %d (media %d)\n", temposConsulta[0], temposConsulta[1], temposConsulta[2], mediaTempo);
 }

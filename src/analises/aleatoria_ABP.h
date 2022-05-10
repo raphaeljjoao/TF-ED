@@ -6,6 +6,6 @@
 ABP* insereAleatorioABP(int quantidade, long int *comps);
 void analiseAleatoriaABP(int quantidade);
 
-void consultaAleatoriaABP(ABP *arv, int quantidade);
+void consultaAleatoriaABP(ABP *ptLista, int quantidade);
 
 #endif // ALEATORIA_ABP_H_

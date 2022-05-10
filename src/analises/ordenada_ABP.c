@@ -38,11 +38,12 @@ void analiseOrdenadaABP(int quantidade) {
     arv = insereOrdenadoABP(quantidade, &comparacoes);
     int deltaTempo = time(NULL) - tempoInicio;
 
-    consultaOrdenadaABP(arv, quantidade);
-
-    printf("%d dados foram inseridos em %s\n", quantidade, tempoEscrito(deltaTempo));
+    printf("\n%d dados foram inseridos em %s\n", quantidade, tempoEscrito(deltaTempo));
     printf("Comparacoes realizadas: %d\n", comparacoes);
     printf("Altura da arvore: %d\n", alturaABP(arv));
+
+    printf("\nConsultas\n");
+    consultaOrdenadaABP(arv, quantidade);
 
     arv = destroiABP(arv);
 }
@@ -70,6 +71,9 @@ void consultaOrdenadaABP(ABP *arv, int quantidade) {
     if (sucessoConsulta) printf("Valor %d encontrado na arvore.\n", consultaFim);
     else printf("Valor %d nao encontrado na arvore.\n", consultaFim);
 
-    printf("Comparações: %d, %d, %d\n", comparacoes[0], comparacoes[1], comparacoes[2]);
-    printf("Tempos de consulta: %d, %d e %d\n", temposConsulta[0], temposConsulta[1], temposConsulta[2]);
+    long int mediaComparacoes = (comparacoes[0] + comparacoes[1] + comparacoes[2]) / NUM_CONSULTAS_ORD;
+    printf("Comparações: %d, %d, %d (media %d)\n", comparacoes[0], comparacoes[1], comparacoes[2], mediaComparacoes);
+
+    int mediaTempo = (temposConsulta[0] + temposConsulta[1] + temposConsulta[2]) / NUM_CONSULTAS_ORD;
+    printf("Tempos de consulta: %d, %d e %d (media %d)\n", temposConsulta[0], temposConsulta[1], temposConsulta[2], mediaTempo);
 }

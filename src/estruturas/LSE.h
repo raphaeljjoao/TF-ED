@@ -20,6 +20,9 @@ LSE* insereFim(LSE *ptLista, int num, long int *comps);
 // Consulta um nó da lista e retorna ele (retorna NULL se não encontrar)
 LSE* consultaLSE(LSE *ptLista, int num, long int *comps);
 
+// Retorna se encontrou ou não o valor
+int consultaValorLSE(LSE *ptLista, int valor, int *tempo, long int *comparacoes); 
+
 // Imprime todos os itens da lista de forma sequencial
 void imprime(LSE *ptLista);
 
